@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Project</title>
+    {{ bootstrap.load_css() }}
+    <style>
+        body{
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Country Code and Names</h1>
+        <form method="POST" action="/"></form>
+        <select>
+            {% for currency_code, info in currency_info.items() %}
+            <option name ="code">
+                <img src="https://flagsapi.com/{{currency_code[:2]}}/flat/64.png" alt="Flag"> {{ currency_code }}
+            </option>
+            {% endfor %}
+
+        </select>
+        <input type="submit" value="Submit">
+        </form>
+        <!-- <ul>
+            {% for currency_code, info in currency_info.items() %}
+                <li>
+                    {{ currency_code }}: {{ info.name }} ({{ info.symbol }} )
+                </li>
+                <br>
+                <br>
+            {% endfor %}
+        </ul> -->
+        <ul>
+            {% for currency_code, info in currency_info.items() %}
+                <li>
+                    {{ currency_code }}: {{ info.name }} ({{ info.symbol }})
+                    <br>
+                    {{ currency_code[:2]}}
+                    <td><img src="https://flagsapi.com/{{currency_code[:2]}}/flat/64.png" alt="Flag"></td>
+                </li>
+            {% endfor %}
+        </ul>
+</header>
+</body>
+</html>
