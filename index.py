@@ -13,7 +13,7 @@ def get_currency_info():
     #check the documentation hoo to use forex python 
     cr = CurrencyRates()
     cc = CurrencyCodes()
-    #to get all country code from the api, and the code are keys in the api dictionary
+    #to get all country codes from the api, and the codes are keys in the api dictionary
     endpoint = f'https://v6.exchangerate-api.com/v6/2f37f7d40f9163a5c0ba1c85/latest/USD'
     r = requests.get(endpoint)
     data = r.json()
