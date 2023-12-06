@@ -23,8 +23,30 @@ def get_currency_info():
     # Get  currencyinfo
     currency_info = {code: {'name': cc.get_currency_name(code), 'symbol': cc.get_symbol(code) }for code in list_of_currencies}
     return currency_info
+searched = False
 
 @app.route('/')
 def index():
+    global searched
+    searched = False  # Reset the flag when loading the main table
     currency_info = get_currency_info()
-    return render_template('index.html', currency_info=currency_info)
+    return render_template('index.html', currency_info=currency_info, searched=searched)
+
+@app.route('/search', methods=['POST'])
+def search():
+    global searched
+    searched = True
+
+    search_term = request.form.get('search_term', '').lower()
+
+    currency_info = get_currency_info()
+    filtered_currency_info = {}
+    for code, info in currency_info.items():
+        if (code is not None and search_term in code.lower()) or \
+           (info['name'] is not None and search_term in info['name'].lower()):
+            filtered_currency_info[code] = info
+
+    if not filtered_currency_info:
+        flash(f'Country "{search_term}" not found in the table.', 'error')
+
+    return render_template('index.html', currency_info=filtered_currency_info, searched=searched)
