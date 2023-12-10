@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <title>{% block title %}Currency Exchange{% endblock %}</title>
+</head>
+<body class="countryCodes_body">
+    {% block navbar %}{% include 'navbar.html' %}{% endblock navbar %}
+    <!-- Default page content here -->
+    <div class="container mt-4">
+        {% block h1 %}
+        <!-- Content unique to each page will go here -->
+        {% endblock h1 %}
+        {% block content %}
+        <!-- Content unique to each page will go here -->
+        {% endblock content %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Exchange Rates for {{ selected_currency }}{% endblock title %}
+
+
+{% block h1 %}
+    <h1 class="countryCodes_h1">Currency Exchange Rates</h1>
+{% endblock h1 %}
+
+{% block content %}
+    <div class="container mt-3">
+        <h2>Exchange Rates for {{ selected_currency }}</h2>
+        <div>Last updated: {{ last_updated }}</div>
+        <br>
+        <div class="sort-dropdown">
+            <select id="sortSelect" onchange="sortCurrency()">
+            <option value="rateAsc">Rate (Lowest to Highest)</option>
+            <option value="rateDesc">Rate (Highest to Lowest)</option>
+            <option value="nameAsc">Name (A to Z)</option>
+            <option value="nameDesc">Name (Z to A)</option>
+            </select>
+        </div>
+        
+        <br>
+
+        <div class="table-responsive">
+            <table id="ratesTable">
+                <thead>
+                    <tr>
+                        <th>Currency Code</th>
+                        <th>Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for currency_code, rate in currency_rate_info.items() %}
+                        <tr>
+                            <td>
+                                <img src="https://flagsapi.com/{{currency_code[:2]}}/flat/64.png" alt="Flag">
+                                <span class="currency-code">{{ currency_code }}</span>
+                            </td>
+                            <td>
+                                {{ selected_currency_symbol }}
+                                <span class="currency-rate">{{ rate }}</span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/sort.js') }}"></script>
+{% endblock scripts %}

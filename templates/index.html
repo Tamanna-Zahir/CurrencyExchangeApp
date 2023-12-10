@@ -1,89 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{ bootstrap.load_css() }}
-    <style>
-        body {
-            text-align: center;
-            background-color: lightblue;
-        }
+{% extends 'base.html' %}
 
-        h1 {
-            color: white;
-            background-color: black;
-            padding: 20px;
-        }
+{% block title %}Home{% endblock title %}
 
-        table {
-            border-collapse: collapse;
-            width: 70%;
-            margin-left: 15%;
-        }
+{% block h1 %}
+    <h1 class="countryCodes_h1">Currency Exchange</h1>
+{% endblock h1 %}
 
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f5f5f5;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        input[type="text"] {
-            padding: 5px;
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Currency Code and Info</h1>
-        <!-- Search form -->
-        <form action="{{ url_for('search') }}" method="post">
-            <input type="text" name="search_term" placeholder="Search for a country...">
-            <input type="submit" value="Search">
-        </form>
-        <!-- Error message (conditionally displayed) -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                <div class="alert alert-danger">
-                    {% for category, message in messages %}
-                        {{ message }}
-                    {% endfor %}
+{% block content %}
+    <div class="container">
+        <header>
+            <h2>Welcome to our Currency Exchange Service</h2>
+        </header>
+    
+        <br>
+        
+        <p>At our currency exchange platform, we offer a reliable and convenient way to convert your money between different currencies. Whether you're a traveler seeking competitive exchange rates or a business looking to manage international transactions, we've got you covered.</p>
+    
+        <p>Key Features:</p>
+    
+        <ul class="home-list">
+            <li>Real-Time Exchange Rates: We provide up-to-the-minute exchange rates, ensuring you always get the most accurate conversion.</li>
+            <li>Wide Range of Currencies: Choose from a comprehensive list of currencies, including major and exotic ones.</li>
+            <li>Easy Conversion: Simply select the source and target currencies, enter the amount, and let our platform do the rest.</li>
+    
+            <li>User-Friendly Interface: Our user-friendly website makes it easy to convert currency with a few clicks.</li>
+        </ul>
+    
+        <p>Whether you're planning an international trip or managing foreign transactions, we're here to make currency exchange hassle-free. Start exchanging currency with us today!</p>
+    
+        <p>
+            Placeholder for horizontally placed graphs of 3 random exchange rates from USD
+        </p>
+    
+            <!-- Placeholder for horizontally placed graphs -->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <!-- Graph 1 content goes here -->
+                        <img src="path_to_graph_image1.jpg" alt="Graph 1">
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- Graph 2 content goes here -->
+                        <img src="path_to_graph_image2.jpg" alt="Graph 2">
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- Graph 3 content goes here -->
+                        <img src="path_to_graph_image3.jpg" alt="Graph 3">
+                    </div>
                 </div>
-            {% endif %}
-        {% endwith %}
-        <!-- Back button (conditionally displayed) -->
-
-        {% if searched %}
-        <form action="{{ url_for('index') }}" method="get" class="back-button-form">
-            <input type="submit" value="Back to Table">
-        </form>
-         {% endif %}
-
-        <table >
-            <tr>
-                <th>Country Currency Code</th>
-                <th>Country & Currecncy Name</th>
-                <th>Currency Symbol</th>
-                <th>Country Flag</th>
-            </tr>
-            {% for currency_code, info in currency_info.items() %}
-            <tr>
-                <td>{{ currency_code }} </td>
-                <td>{{ info.name }} </td>
-                <td>{{ info.symbol }} </td>
-                <td><img src="https://flagsapi.com/{{currency_code[:2]}}/flat/64.png" alt="Flag"> </td>
-            </tr>
-            {% endfor %}
-        </table>
-    </header>
-</body>
-</html>
+            </div>
+    </div>
+{% endblock content %}
