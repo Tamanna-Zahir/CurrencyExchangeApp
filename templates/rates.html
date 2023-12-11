@@ -1,32 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exchange Rates</title>
-    <!-- Include your CSS and other head-related content here -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-</head>
+{% block title %}Exchange Rates for {{ selected_currency }}{% endblock title %}
 
-<body>
-    <nav class="navbar navbar-light" style="background-color: black;">
-        <div class="container-fluid">
-            <!-- Add a home button to go back to the home page -->
-            <a class="navbar-brand" href="/" style="color: white;">Home</a>
+
+{% block h1 %}
+    <h1 class="countryCodes_h1">Currency Exchange Rates</h1>
+{% endblock h1 %}
+
+{% block content %}
+    <div class="container mt-3">
+        <h2>Exchange Rates for {{ selected_currency }}</h2>
+        <div>Last updated: {{ last_updated }}</div>
+        <br>
+        <div class="sort-dropdown">
+            <select id="sortSelect" onchange="sortCurrency()">
+            <option value="rateAsc">Rate (Lowest to Highest)</option>
+            <option value="rateDesc">Rate (Highest to Lowest)</option>
+            <option value="nameAsc">Name (A to Z)</option>
+            <option value="nameDesc">Name (Z to A)</option>
+            </select>
         </div>
-    </nav>
+        
+        <br>
 
-    <header>
-        <h1>Exchange Rates</h1>
-    </header>
+        <div class="table-responsive">
+            <table id="ratesTable">
+                <thead>
+                    <tr>
+                        <th>Currency Code</th>
+                        <th>Rate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for currency_code, rate in currency_rate_info.items() %}
+                        <tr>
+                            <td>
+                                <img src="https://flagsapi.com/{{currency_code[:2]}}/flat/64.png" alt="Flag">
+                                <span class="currency-code">{{ currency_code }}</span>
+                            </td>
+                            <td>
+                                {{ selected_currency_symbol }}
+                                <span class="currency-rate">{{ rate }}</span>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
 
-    <!-- Content of your rates page goes here -->
-
-    <footer>
-        <!-- Include your footer content here -->
-    </footer>
-
-</body>
-
-</html>
+{% block scripts %}
+    <script src="{{ url_for('static', filename='js/sort.js') }}"></script>
+{% endblock scripts %}

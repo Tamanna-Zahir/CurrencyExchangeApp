@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Exchange Rates{% endblock title %}
+
+{% block h1 %}
+    <h1 class="countryCodes_h1">Currency Exchange Rates</h1>
+{% endblock h1 %}
+
+{% block content %}
+    <div class="container">
+        <form action="{{ url_for('rates') }}" method="post">
+            <div class="exchange-form">
+                <select name="currencyCode">
+                    <option value="" disabled selected>Select Currency</option>
+                    {% for currency_code, info in currency_info.items() %}
+                        <option value="{{ currency_code }}">{{ currency_code }}</option>
+                    {% endfor %}
+                </select>
+                <button>Exchange Rates</button>
+            </div>
+        </form> 
+    </div>
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Exchange Rates for {{ selected_currency }}{% endblock title %}
+
+{% block h1 %}
+    <h1 class="countryCodes_h1">Currency Code and Info</h1>
+{% endblock h1 %}
+
+{% block content %}
+    <header>
+        <!-- Search form -->
+        <form action="{{ url_for('search') }}" method="post">
+            <input type="text" name="search_term" placeholder="Search for a country...">
+            <input type="submit" value="Search">
+        </form>
+        <!-- Error message (conditionally displayed) -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert alert-danger">
+                    {% for category, message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        <!-- Back button (conditionally displayed) -->
+
+        {% if searched %}
+        <form action="{{ url_for('countryCodes') }}" method="get" class="back-button-form">
+            <input type="submit" value="Back to Table">
+        </form>
+         {% endif %}
+
+        <table >
+            <tr>
+                <th>Country Currency Code</th>
+                <th>Country & Currecncy Name</th>
+                <th>Currency Symbol</th>
+                <th>Country Flag</th>
+            </tr>
+            {% for currency_code, info in currency_info.items() %}
+            <tr>
+                <td>{{ currency_code }} </td>
+                <td>{{ info.name }} </td>
+                <td>{{ info.symbol }} </td>
+                <td><img src="https://flagsapi.com/{{currency_code[:2]}}/flat/64.png" alt="Flag"> </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </header>
+{% endblock content %}
