@@ -34,6 +34,7 @@ def get_currency_info():
     return currency_info
 searched = False
 
+# This route handles POST requests when a user wants to view exchange rates from a specific currency to other currencies
 @app.route('/rates', methods=['POST'])
 def rates():
     from_currency = request.form.get('currencyCode')
@@ -102,6 +103,7 @@ def search():
 
     return render_template('countryCodes.html', currency_info=filtered_currency_info, searched=searched)
 
+# This route is designed to render a web page that allows users to select a currency from a dropdown menu and view its exchange rates
 @app.route('/exchangeRates')
 def exchangeRates():
     currency_info = get_currency_info()
