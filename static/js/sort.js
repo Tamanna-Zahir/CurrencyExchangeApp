@@ -1,3 +1,15 @@
+/*
+Course: CST205-01_FA23: Multimedia Design & Progmng
+Title: Currency Exchanage Project
+Abstract: These client-side JavaScript functions are used in the rates.html to sort the exchange rates.
+Authors: Delight Lee
+Date: 12/11/23
+*/
+
+/*
+The sortCurrency function sort a table of currency exchange rates 
+according to different criteria selected by the user through a dropdown menu.
+*/
 function sortCurrency() {
     // Get the dropdown element
     let selectBox = document.getElementById("sortSelect");
@@ -36,7 +48,11 @@ function sortCurrency() {
         }
     }
 }
-  
+
+/*
+The shouldSwitchRows function assists sortCurrency 
+by checking whether the two rows being compared should be switched
+*/
 function shouldSwitchRows(x, y, option) {
     // Extracting the text content for comparison
     let xContent = x.textContent;
