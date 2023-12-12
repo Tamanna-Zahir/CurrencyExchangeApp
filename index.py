@@ -1,4 +1,11 @@
-
+'''
+Course:CST205-01_FA23: Multimedia Design & Progmng
+Title: Currency Exchanage Project
+Abstract: The provided Python code is the backend component for our web application built using the Flask framework
+Authors:Tamanna Zahir, Rakery Cheng, Delight Lee, and Haider Syed
+Date: 12/11/23
+Note: Who worked on which functions is listed above each function
+'''
 from flask import Flask, render_template, flash, redirect, url_for, request
 from flask_bootstrap import Bootstrap5
 from forex_python.converter import CurrencyRates,  CurrencyCodes
