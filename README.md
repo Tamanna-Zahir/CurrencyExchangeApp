@@ -1,8 +1,10 @@
 # Exchange Rates
 ## This project is created by CSUMB CST205's Team9485
+- Project Description: This web application is designed to provide users a user-friendly platform for currency exchange.
 - Team members: Tamanna Zahir, Rakery Cheng, Delight Lee, and Haider Syed
 - Class: CST205-01_FA23: Multimedia Design & Progmng
 - Date: 12/11/23
+  
 ## How to run program: 
 **Set Up Python Environment:**
 - Make sure you have Python installed on your machine(Check Flask compatability)
