@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Select Currencies - Plots{% endblock title %}
+
+{% block h1 %}
+    <h1 class="countryCodes_h1">Select Currencies for Plot</h1>
+{% endblock h1 %}
+
+{% block content %}
+    <div class="container">
+        <form method="POST" action="{{ url_for('plot') }}">
+            <label for="currency1">Select Currency 1:</label>
+            <select name="currency1" id="currency1">
+                {% for code, _ in currency_info.items() %}
+                    <option value="{{ code }}">{{ code }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="currency2">Select Currency 2:</label>
+            <select name="currency2" id="currency2">
+                {% for code, _ in currency_info.items() %}
+                    <option value="{{ code }}">{{ code }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Generate Plot</button>
+        </form>
+
+        <!-- Display the saved plot image -->
+        <img src="{{ url_for('static', filename='plot.png') }}" alt="Exchange Rate Plot">
+    </div>
+{% endblock content %}
