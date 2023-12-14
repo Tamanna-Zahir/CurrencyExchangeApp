@@ -68,9 +68,6 @@ def rates():
         flash('There was a problem retrieving the exchange rates.', 'error')
         return redirect(url_for('exchangeRates'))
 
-def generate_plot():
-    # No plot for now, return an empty string
-    return ''
 
 @app.route('/')
 def index():
@@ -80,9 +77,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
 
-from forex_python.converter import CurrencyRates, RatesNotAvailableError
-
-from flask import request
+from forex_python.converter import RatesNotAvailableError
 
 def get_exchange_rate_with_fallback(c, currency_from, currency_to, date):
     max_retries = 3
@@ -107,7 +102,7 @@ def plot():
         currency2 = request.form.get('currency2')
 
         end_date = datetime.now()
-        start_date = end_date - timedelta(days=7)  # Set the start date as 7 days
+        start_date = end_date - timedelta(days=90)  # Set the start date as 30 days
 
         # Generate a date range using pandas
         date_range = pd.date_range(start=start_date, end=end_date, freq='D')  # 'D' means daily frequency
@@ -143,13 +138,16 @@ def plot():
         df['date'] = pd.to_datetime(df['date'])
 
         # Plot the exchange rates
-        plt.plot(df['date'], df[currency1], label=currency1)
+        # plt.plot(df['date'], df[currency1], label=currency1)
         plt.plot(df['date'], df[currency2], label=currency2)
 
         # Add labels and title to the plot
         plt.xlabel('Date')
         plt.ylabel('Exchange Rate')
         plt.title(f'Exchange Rates: {currency1}/{currency2}')
+
+        # Rotate the date labels by 45 degrees
+        plt.xticks(rotation=90)
 
         # Add a legend to the plot
         plt.legend()
