@@ -106,9 +106,8 @@ def plot():
         currency1 = request.form.get('currency1')
         currency2 = request.form.get('currency2')
 
-        # Define the date range (last 3 months for this example)
         end_date = datetime.now()
-        start_date = end_date - timedelta(days=7)  # Set the start date as 3 months ago
+        start_date = end_date - timedelta(days=7)  # Set the start date as 7 days
 
         # Generate a date range using pandas
         date_range = pd.date_range(start=start_date, end=end_date, freq='D')  # 'D' means daily frequency
