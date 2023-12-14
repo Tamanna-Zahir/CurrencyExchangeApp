@@ -62,8 +62,8 @@ function shouldSwitchRows(x, y, option) {
     if (option === "rateAsc" || option === "rateDesc") {
         // Replace any characters in the strings that are not digits, a period (.), or a minus sign (-) with an empty string
         // Basically leave the currency symbmol out of the comparision
-        xContent = parseFloat(xContent.replace(/[^\d.-]/g, ''));
-        yContent = parseFloat(yContent.replace(/[^\d.-]/g, ''));
+        xContent = parseFloat(x.textContent.replace(/[^0-9.eE-]/g, ''));
+        yContent = parseFloat(y.textContent.replace(/[^0-9.eE-]/g, ''));
     }
 
     // Comparing based on the selected option

@@ -28,4 +28,5 @@
 - GitHub Repo: https://github.com/delightgit/CST205-Team-9485-Project#cst205-team-9485-project
 - Trello Board: https://trello.com/invite/b/WiNPDqoJ/ATTIbcd39fa634c2121a6a9054a2c0c6d1586B2E27D3/cst205-team-9485-project
 ## Future work
- 
+- The incorporation of historical exchange rates graphing is underway.
+  This feature will provide users with visual representations of currency performance over time.
