@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Currency Exchange{% endblock title %}
+{% block h1 %}
+    <h1 class="countryCodes_h1">Currency Exchange</h1>
+{% endblock h1 %}
+{% block content %}
+    <div class="container">
+        <form action="{{ url_for('currencyExchange') }}" method="post">
+            <div class="exchange-form">
+                <label for="fromCurrency">From Currency:</label>
+                <select name="fromCurrency" id="fromCurrency">
+                    <!-- Populate dropdown with currency codes -->
+                    {% for currency_code, info in currency_info.items() %}
+                        <option value="{{ currency_code }}">{{ currency_code }}</option>
+                    {% endfor %}
+                </select>
+                <label for="amount">Amount:</label>
+                <input type="text" name="amount" id="amount" placeholder="Enter amount">
+            </div>
+            <div class="exchange-form">
+                <label for="toCurrency">To Currency:</label>
+                <select name="toCurrency" id="toCurrency">
+                    <!-- Populate dropdown with currency codes -->
+                    {% for currency_code, info in currency_info.items() %}
+                        <option value="{{ currency_code }}">{{ currency_code }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit">Perform Exchange</button>
+            </div>
+        </form>
+
+        {% if from_currency and to_currency and amount is defined %}
+            <p>Converted amount from {{ from_currency }} to {{ to_currency }}: {{ converted_amount }}</p>
+        {% endif %}
+    </div>
+{% endblock content %}
