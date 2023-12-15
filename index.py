@@ -197,3 +197,33 @@ def search():
 def exchangeRates():
     currency_info = get_currency_info()
     return render_template('exchangeRates.html', currency_info=currency_info)
+
+from flask import render_template
+
+def perform_currency_exchange(from_currency, to_currency, amount):
+    c = CurrencyRates()
+    rate = c.get_rate(from_currency, to_currency)
+    converted_amount = amount * rate
+    return converted_amount
+
+# Your other route definitions
+
+@app.route('/currencyExchange', methods=['GET', 'POST'])
+def currencyExchange():
+    if request.method == 'POST':
+        from_currency = request.form.get('fromCurrency')
+        to_currency = request.form.get('toCurrency')
+        amount = float(request.form.get('amount', 0.0))
+
+        converted_amount = perform_currency_exchange(from_currency, to_currency, amount)
+
+        return render_template(
+            'currencyExchange.html',
+            currency_info=get_currency_info(),
+            from_currency=from_currency,
+            to_currency=to_currency,
+            amount=amount,
+            converted_amount=converted_amount
+        )
+
+    return render_template('currencyExchange.html', currency_info=get_currency_info())
