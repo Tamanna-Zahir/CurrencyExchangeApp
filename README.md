@@ -30,4 +30,4 @@
 ## Future work
 - The incorporation of historical exchange rates graphing is underway.
   This feature will provide users with visual representations of currency performance over time.
-- Plots are talking a while to load as gprah spans over 90 days of datapoints. The plotting feature also limited as the API used only have historical data (which can be downloaded as csv files) on certain main currencies so given more time, another, more efficient API what a more vast datapool would be ideally found and used.
+- Plots are talking a while to load as graph spans over 90 days of datapoints. The plotting feature also limited as the API used only have historical data (which can be downloaded as csv files) on certain main currencies. With that said, given more time, another, more efficient API what a more vast datapool would be ideally found and used.
